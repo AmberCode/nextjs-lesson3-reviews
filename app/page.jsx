@@ -1,9 +1,9 @@
 import Link from "next/link";
 import Heading from "@/components/Heading";
-import { getFeatureReview } from "@/lib/review";
+import { getFeaturedReview } from "@/lib/review";
 
 export default async function HomePage() {
-  const defaultReview = await getFeatureReview();
+  const defaultReview = await getFeaturedReview();
   return (
     <>
       <Heading>Indie Gamer</Heading>

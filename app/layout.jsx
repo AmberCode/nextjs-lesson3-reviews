@@ -2,6 +2,14 @@ import "./global.css";
 import NavBar from "../components/NavBar";
 import { orbitron, exo2 } from "./fonts";
 
+export const metadata = {
+  title: {
+    default: "Andrius Website",
+    template: "%s | Andrius Website",
+  },
+  description: "Indie Gamer description",
+};
+
 export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${exo2.variable} ${orbitron.variable}`}>
