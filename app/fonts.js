@@ -5,7 +5,7 @@ export const orbitron = Orbitron({
   variable: '--font-orbitron',
 });
 
-export const exo2= Exo_2({
+export const exo2 = Exo_2({
   subsets: ['latin'],
   variable: ['--font-exo2'],
 });
