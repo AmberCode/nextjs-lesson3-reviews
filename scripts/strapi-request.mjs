@@ -1,12 +1,12 @@
-import qs from "qs";
+import qs from 'qs';
 
 const url =
-  "http://localhost:1337/api/reviews?" +
+  'http://localhost:1337/api/reviews?' +
   qs.stringify(
     {
-      fields: ["slug", "title", "subtitle", "publishedAt", ""],
-      populate: { image: { fields: ["url"] } },
-      sort: ["publishedAt:desc"],
+      fields: ['slug', 'title', 'subtitle', 'publishedAt', ''],
+      populate: { image: { fields: ['url'] } },
+      sort: ['publishedAt:desc'],
       pagination: {
         pageSize: 6,
       },
