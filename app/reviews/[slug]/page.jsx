@@ -5,7 +5,7 @@ import { getReview } from '@/lib/reviews';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
 
-export const dynamic = 'force-dynamic';
+// export const dynamic = 'force-dynamic';
 
 // export async function generateStaticParams() {
 //   const slugs = await getSlugs();
