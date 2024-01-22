@@ -1,9 +1,12 @@
 import Heading from '@/components/Heading';
 import ShareLinkButton from '@/components/ShareLinkButton';
 import { getReview } from '@/lib/reviews';
+import { ChatBubbleBottomCenterTextIcon } from '@heroicons/react/24/outline';
 // import { getSlugs } from '@/lib/reviews';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
+import CommentForm from '@/components/CommentForm';
+import CommentList from '@/components/CommentList';
 
 // export const dynamic = 'force-dynamic';
 
@@ -47,6 +50,15 @@ export default async function ReviewPage({ params: { slug } }) {
         dangerouslySetInnerHTML={{ __html: review.body }}
         className='max-w-screen-sm prose prose-slate'
       />
+
+      <section className='border-dashed border-t max-w-screen-sm mt-3 py-3'>
+        <h2 className='font-bold flex gap-2 items-center text-xl'>
+          <ChatBubbleBottomCenterTextIcon className='h-6 w-6' />
+          Comments
+        </h2>
+        <CommentForm slug={slug} title={review.title} />
+        <CommentList slug={slug} />
+      </section>
     </>
   );
 }
