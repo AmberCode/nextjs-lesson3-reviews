@@ -1,23 +1,33 @@
-import { createComment } from '@/lib/comments';
-import { redirect } from 'next/navigation';
+'use client';
 
-export default async function CommentForm({ slug, title }) {
-  async function action(formData) {
-    'use server';
-    const user = formData.get('user');
-    const message = formData.get('message');
-    const result = await createComment({ slug, user, message });
-    console.log('[result]', { result });
-    redirect(`/reviews/${slug}`);
-  }
+import { createCommentAction } from '@/app/reviews/[slug]/actions';
+import { useState } from 'react';
+
+export default function CommentForm({ slug, title }) {
+  const [error, setError] = useState(undefined);
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError(undefined);
+    const form = event.currentTarget;
+    const formData = new FormData(form);
+    const result = await createCommentAction(formData);
+    console.log('andy:', { result, error });
+    if (result?.isError) {
+      setError(result);
+    } else {
+      form.reset();
+    }
+  };
   return (
     <form
-      action={action}
+      onSubmit={handleSubmit}
       className='border bg-white flex flex-col gap-2 mt-3 px-3 py-3 rounded'
     >
       <p className='pb-1'>
         Already played <strong>{title}</strong>? Have your say!
       </p>
+      <input type='hidden' name='slug' value={slug} />
       <div className='flex'>
         <label htmlFor='userField' className='shrink-0 w-32'>
           Your name
@@ -38,6 +48,7 @@ export default async function CommentForm({ slug, title }) {
           className='border px-2 py-1 rounded w-full'
         />
       </div>
+      {error && <p className='text-red-700'>{error.message}</p>}
       <button
         type='submit'
         className='bg-orange-800 rounded px-2 py-1 self-center
